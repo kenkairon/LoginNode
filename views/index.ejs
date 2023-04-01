@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+    <body class="text-center">
+        <div class="contenedor">
+            <h1>Página de Inicio</h1>
+            <% if (login) { %>
+                <h1>Usuario conectado: <strong><%= email %></strong></h1>
+                <a href="logout" class="a-logout">Logout</a>
+            <%} else { %>
+                <h1><strong><%= email %></strong></h1>
+                <a href="login" class="a-login">Ir a Login</a>
+            <% } %>
+        </div>
+    <script>
+        /*Esta línea de código utiliza el método querySelector() del objeto document para obtener una referencia
+    al elemento HTML con el ID inputRut. Este elemento es un campo de entrada (input) donde el usuario puede ingresar un número de RUT.*/
+    const inputRut = document.querySelector('#inputRut');
+
+    /*Luego, se agrega un event listener al elemento inputRut.  */
+    inputRut.addEventListener('input',buscarPorRut);
+        function buscarPorRut() {
+            /*En primer lugar, se obtiene el valor ingresado por el usuario y se convierte a minúsculas
+            y se elimina los espacios en blanco del principio y final */
+            const valor = inputRut.value.toLowerCase().trim();
+
+            /* el método querySelectorAll() para obtener una lista de todas las filas (tr) dentro del elemento HTML
+            con el ID "example".Este elemento es la tabla donde se mostrarán los datos de la búsqueda.*/
+            const filas = document.querySelectorAll('#example tbody tr');
+
+            filas.forEach(fila => {
+                /*el método querySelector() en la fila y se selecciona el tercer elemento td
+                (ya que la columna de RUT es la tercera columna en la tabla) y se obtiene su contenido de texto (textContent).
+                Luego, se convierte a minúsculas.*/
+                const rut = fila.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                /*Si el valor ingresado por el usuario está incluido en el valor del RUT de la fila actual,
+                se muestra la fila estableciendo el valor de la propiedad display
+                de la fila en una cadena vacía (''). De lo contrario, se oculta la fila estableciendo el valor de la propiedad display en 'none'. */
+                if (rut.includes(valor)) {
+                    fila.style.display = '';
+                } else {
+                fila.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
