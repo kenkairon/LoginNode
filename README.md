@@ -2,8 +2,8 @@
 
 Integrantes 
 -----------------------------
-Javier Alcayaga
-Ender Pérez
+Javier Alcayaga -
+Ender Pérez -
 Carlos Vásquez
 -----------------------------
 
